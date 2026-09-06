@@ -121,18 +121,45 @@
 ### 📋 Công việc
 
 - [ ] Tạo class `Customer`.
-- [ ] Thêm thuộc tính:
+- [ ] Thêm các thuộc tính:
   - `name`
   - `phone`
   - `email`
-- [ ] Tạo default constructor.
-- [ ] Tạo parameterized constructor.
+  - `address`
+- [ ] Tạo constructor bằng initializer list.
+- [ ] Constructor nhận đầy đủ 4 thông tin:
+  - `name`
+  - `phone`
+  - `email`
+  - `address`
 - [ ] Tạo getter:
   - `getName()`
   - `getPhone()`
   - `getEmail()`
-- [ ] Tạo `displayInfo()`.
-- [ ] Test constructor, getter và `displayInfo()`.
+  - `getAddress()`
+- [ ] Tạo setter:
+  - `setName()`
+  - `setPhone()`
+  - `setEmail()`
+  - `setAddress()`
+- [ ] Tạo hàm `input()` để user nhập:
+  - Personal information
+  - Delivery address
+- [ ] Tạo hàm `display()` để hiển thị toàn bộ thông tin Customer.
+- [ ] Test constructor, getter, setter, `input()` và `display()`.
+
+### 💡 Logic
+
+- `Customer` lưu thông tin cá nhân của người đặt hàng.
+- `address` là địa chỉ giao hàng và **bắt buộc phải có** vì được sử dụng trong flow đặt hàng.
+- `input()` cho phép user nhập thông tin Customer và địa chỉ giao hàng.
+- `display()` hiển thị đầy đủ:
+  - Name
+  - Phone
+  - Email
+  - Address
+- Constructor nên sử dụng **initializer list**.
+- Không thêm logic xử lý Order hoặc ShoppingCart vào `Customer`.
 
 ---
 
