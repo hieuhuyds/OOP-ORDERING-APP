@@ -19,19 +19,33 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="app\OrderingApplication.h" />
+    <ClInclude Include="cores\cart\CartItem.h" />
+    <ClInclude Include="cores\cart\ShoppingCart.h" />
     <ClInclude Include="cores\customer\Customer.h" />
+    <ClInclude Include="cores\order\Order.h" />
     <ClInclude Include="cores\products\BookProduct.h" />
     <ClInclude Include="cores\products\GameProduct.h" />
     <ClInclude Include="cores\products\MusicProduct.h" />
     <ClInclude Include="cores\products\Product.h" />
+    <ClInclude Include="manage\FileManage.h" />
+    <ClInclude Include="manage\OrderManage.h" />
+    <ClInclude Include="manage\ProductManage.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="app\main.cpp" />
+    <ClCompile Include="app\OrderingApplication.cpp" />
+    <ClCompile Include="cores\cart\CartItem.cpp" />
+    <ClCompile Include="cores\cart\ShoppingCart.cpp" />
     <ClCompile Include="cores\customer\Customer.cpp" />
+    <ClCompile Include="cores\order\Order.cpp" />
     <ClCompile Include="cores\products\BookProduct.cpp" />
     <ClCompile Include="cores\products\GameProduct.cpp" />
     <ClCompile Include="cores\products\MusicProduct.cpp" />
     <ClCompile Include="cores\products\Product.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="manage\FileManage.cpp" />
+    <ClCompile Include="manage\OrderManage.cpp" />
+    <ClCompile Include="manage\ProductManage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
