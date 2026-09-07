@@ -1,304 +1,165 @@
-# 📋 PROJECT PROGRESS — OOP ORDERING APPLICATION
+# 📋 TASK CẦN LÀM — OOP ORDERING APPLICATION
+
+> 📅 Ngày làm: **07/09**
+> ⏰ Deadline: **12:00 trưa 08/09**
+
+## 🎯 Mục tiêu
+
+Hoàn thành các module Cart → Order → File Management, sau đó build và test.
 
 ---
 
-# 📅 06/09 — PRODUCT + CUSTOMER
+## TASK 6 — CartItem
 
-## 📦 TASK 1 — BOOK PRODUCT
+**👤 Quang Đại**
 
-**Member:** Minh Tiến
+**File:**
+- `cores/cart/CartItem.h`
+- `cores/cart/CartItem.cpp`
 
-### 📁 File thực hiện
+**Cần làm:**
+- Tạo `CartItem` gồm `Product* product` và `int quantity`.
+- Constructor + getters.
+- `increaseQuantity()` / `decreaseQuantity()`.
+- `getSubtotal()`.
 
-- `cores/products/BookProduct.h`
-- `cores/products/BookProduct.cpp`
-
-### 📋 Công việc
-
-- [ ] Tạo class `BookProduct` kế thừa `Product`.
-- [ ] Thêm thuộc tính:
-  - `author`
-  - `pages`
-- [ ] Tạo constructor bằng initializer list.
-- [ ] Constructor phải gọi constructor của `Product` và truyền category là `"Book"`.
-- [ ] Tạo getter:
-  - `getAuthor()`
-  - `getPages()`
-- [ ] Override 3 hàm:
-  - `displayInfo()`
-  - `calculateFinalPrice()`
-  - `getType()`
-- [ ] Test class sau khi hoàn thành.
-
-### 💡 Logic
-
-- `pages > 500` → giá tăng 5%.
-- `pages <= 500` → giữ nguyên giá.
-- `getType()` trả về `"Book"`.
-- `displayInfo()` hiển thị thông tin chung của `Product` và thêm `author`, `pages`.
+**Logic:**
+- `Subtotal = calculateFinalPrice() × quantity`.
+- Quantity không được âm.
+- Không `delete Product`.
 
 ---
 
-## 🎮 TASK 2 — GAME PRODUCT
+## TASK 7 — ShoppingCart
 
-**Member:** Tường Vy
+**👤 Tường Vy**
 
-### 📁 File thực hiện
+**File:**
+- `cores/cart/ShoppingCart.h`
+- `cores/cart/ShoppingCart.cpp`
 
-- `cores/products/GameProduct.h`
-- `cores/products/GameProduct.cpp`
+**Cần làm:**
+- Dùng `vector<CartItem> items`.
+- `addProduct()`, `removeProduct()`.
+- `displayCart()`, `calculateSubtotal()`.
+- `isEmpty()`, `clear()`, `getItems()`.
 
-### 📋 Công việc
+**Logic:**
+- Thêm cùng Product → cộng quantity, không tạo item trùng ID.
+- Quantity không được vượt stock.
+- `Subtotal = tổng subtotal của các CartItem`.
 
-- [ ] Tạo class `GameProduct` kế thừa `Product`.
-- [ ] Thêm thuộc tính:
-  - `platform`
-  - `genre`
-- [ ] Tạo constructor bằng initializer list.
-- [ ] Constructor phải gọi constructor của `Product` và truyền category là `"Game"`.
-- [ ] Tạo getter:
-  - `getPlatform()`
-  - `getGenre()`
-- [ ] Override 3 hàm:
-  - `displayInfo()`
-  - `calculateFinalPrice()`
-  - `getType()`
-- [ ] Test class sau khi hoàn thành.
-
-### 💡 Logic
-
-- `platform == "Console"` → giá tăng 5%.
-- `platform == "PC"` → giữ nguyên giá.
-- `getType()` trả về `"Game"`.
-- `displayInfo()` hiển thị thông tin chung của `Product` và thêm `platform`, `genre`.
+**Ví dụ:** `B001 × 2` + `B001 × 3` → `B001 × 5`.
 
 ---
 
-## 🎵 TASK 3 — MUSIC PRODUCT
+## TASK 8 — OrderItem
 
-**Member:** Thư
+**👤 Thư**
 
-### 📁 File thực hiện
+**File:**
+- `cores/order/OrderItem.h`
+- `cores/order/OrderItem.cpp`
 
-- `cores/products/MusicProduct.h`
-- `cores/products/MusicProduct.cpp`
+**Cần làm:**
+- Lưu `productId`, `productName`, `finalPrice`, `quantity`.
+- Constructor + getters.
+- `getSubtotal()`.
+- `display()`.
 
-### 📋 Công việc
-
-- [ ] Tạo class `MusicProduct` kế thừa `Product`.
-- [ ] Thêm thuộc tính:
-  - `artist`
-  - `durationMinutes`
-- [ ] Tạo constructor bằng initializer list.
-- [ ] Constructor phải gọi constructor của `Product` và truyền category là `"Music"`.
-- [ ] Tạo getter:
-  - `getArtist()`
-  - `getDurationMinutes()`
-- [ ] Override 3 hàm:
-  - `displayInfo()`
-  - `calculateFinalPrice()`
-  - `getType()`
-- [ ] Test class sau khi hoàn thành.
-
-### 💡 Logic
-
-- `durationMinutes > 60` → giá tăng 5%.
-- `durationMinutes <= 60` → giữ nguyên giá.
-- `getType()` trả về `"Music"`.
-- `displayInfo()` hiển thị thông tin chung của `Product` và thêm `artist`, `durationMinutes`.
+**Logic:**
+- `OrderItem` là snapshot sản phẩm tại thời điểm checkout.
+- Luồng: `CartItem → Checkout → OrderItem`.
+- Không dùng `Product*`.
+- `Subtotal = finalPrice × quantity`.
 
 ---
 
-## 👤 TASK 4 — CUSTOMER
+## TASK 9 — Order
 
-**Member:** Quang Đại
+**👤 Minh Tiến**
 
-### 📁 File thực hiện
+**File:**
+- `cores/order/Order.h`
+- `cores/order/Order.cpp`
 
-- `cores/customer/Customer.h`
-- `cores/customer/Customer.cpp`
+**Cần làm:**
+- Lưu `orderId`, `orderDate`, `Customer`.
+- Lưu `deliveryAddress`, `expectedDeliveryDate`.
+- Lưu `vector<OrderItem> items`.
+- Lưu `shippingFee`, `totalPayment`.
+- Constructor + getters cần thiết.
+- `calculateTotal()`.
+- `displayOrder()`.
 
-### 📋 Công việc
+**Logic ngày:**
+- `orderDate` tự lấy system date, user không nhập.
+- Dùng `<chrono>` + `<ctime>`.
+- Format `dd/mm/yyyy`.
+- `expectedDeliveryDate = orderDate + 3 ngày`.
 
-- [ ] Tạo class `Customer`.
-- [ ] Thêm các thuộc tính:
-  - `name`
-  - `phone`
-  - `email`
-  - `address`
-- [ ] Tạo constructor bằng initializer list.
-- [ ] Constructor nhận đầy đủ 4 thông tin:
-  - `name`
-  - `phone`
-  - `email`
-  - `address`
-- [ ] Tạo getter:
-  - `getName()`
-  - `getPhone()`
-  - `getEmail()`
-  - `getAddress()`
-- [ ] Tạo setter:
-  - `setName()`
-  - `setPhone()`
-  - `setEmail()`
-  - `setAddress()`
-- [ ] Tạo hàm `input()` để user nhập:
-  - Personal information
-  - Delivery address
-- [ ] Tạo hàm `display()` để hiển thị toàn bộ thông tin Customer.
-- [ ] Test constructor, getter, setter, `input()` và `display()`.
-
-### 💡 Logic
-
-- `Customer` lưu thông tin cá nhân của người đặt hàng.
-- `address` là địa chỉ giao hàng và **bắt buộc phải có** vì được sử dụng trong flow đặt hàng.
-- `input()` cho phép user nhập thông tin Customer và địa chỉ giao hàng.
-- `display()` hiển thị đầy đủ:
-  - Name
-  - Phone
-  - Email
-  - Address
-- Constructor nên sử dụng **initializer list**.
-- Không thêm logic xử lý Order hoặc ShoppingCart vào `Customer`.
+**Logic phí:**
+- Subtotal < 500000 → Shipping = 30000.
+- Subtotal >= 500000 → Shipping = 0.
+- `Total = Subtotal + Shipping`.
 
 ---
 
-# 🧪 TASK 5 — TEST & NGHIỆM THU GROUP PRODUCTS
+## TASK 10 — FileManage
 
-**Người phụ trách:** Hiếu Huy (Leader)
+**👤 Hiếu Huy — Leader**
 
-### 🎯 Mục tiêu
+**File:**
+- `manage/FileManage.h`
+- `manage/FileManage.cpp`
 
-Kiểm tra các class `Product`, `BookProduct`, `GameProduct`, `MusicProduct` và `Customer` sau khi các member hoàn thành.
+**Data:**
+- `data/products.txt`
+- `data/OrderHistory.txt`
 
-### 📁 File thực hiện
+**Cần làm:**
+- Đọc dữ liệu từ file.
+- Ghi dữ liệu vào file.
+- Append dữ liệu mà không làm mất dữ liệu cũ.
+- Hỗ trợ lưu Order History.
+- Test đọc `products.txt`.
+- Test ghi/append `OrderHistory.txt`.
 
-- `app/main.cpp`
+> `OrderHistory.txt` chỉ là file lưu lịch sử Order, không cần tạo class `OrderHistory`.
 
-### 📋 Công việc
+---
 
-- [ ] Ghép các class `Product`, `BookProduct`, `GameProduct`, `MusicProduct` và `Customer` để test.
-- [ ] Tạo `vector<Product*>` để kiểm tra tính đa hình.
-- [ ] Gọi `displayInfo()`, `calculateFinalPrice()` và `getType()` thông qua `Product*`.
-- [ ] Kiểm tra cả 2 trường hợp tính giá của từng loại sản phẩm:
-  - Book: `pages <= 500` và `pages > 500`.
-  - Game: `PC` và `Console`.
-  - Music: `durationMinutes <= 60` và `durationMinutes > 60`.
-- [ ] Kiểm tra constructor, getter và `displayInfo()` của `Customer`.
-- [ ] Build và chạy chương trình thành công.
-- [ ] Không có lỗi compile/runtime.
+# 🧪 TEST
 
-### 💻 Code test mẫu
+**Cart:**
+- [ ] Add sản phẩm.
+- [ ] Add trùng → cộng quantity.
+- [ ] Không vượt stock.
+- [ ] Remove sản phẩm.
+- [ ] Tính subtotal.
+- [ ] Test cart rỗng.
 
-```cpp
-#include "cores/products/Product.h"
-#include "cores/products/BookProduct.h"
-#include "cores/products/GameProduct.h"
-#include "cores/products/MusicProduct.h"
-#include "cores/customer/Customer.h"
+**Order:**
+- [ ] OrderItem lưu đúng snapshot.
+- [ ] Order date lấy system date.
+- [ ] Expected delivery +3 ngày.
+- [ ] Shipping đúng điều kiện.
+- [ ] Total payment đúng.
+- [ ] Display Order.
 
-#include <iostream>
-#include <vector>
+**File:**
+- [ ] Đọc `products.txt`.
+- [ ] Ghi file.
+- [ ] Append `OrderHistory.txt`.
+- [ ] Kiểm tra dữ liệu cũ không bị mất.
 
-using namespace std;
+---
 
-int main()
-{
-    // =========================
-    // TEST BOOK
-    // =========================
+# ✅ QUY TRÌNH NỘP CODE
 
-    BookProduct book1(
-        "B001", "Clean Code", 250000, 10,
-        "Robert Martin", 450
-    );
+Mỗi thành viên:
 
-    BookProduct book2(
-        "B002", "C++ Primer", 300000, 8,
-        "Stanley Lippman", 800
-    );
+`Code → Build → Test → Commit → Push branch → Pull Request`
 
-
-    // =========================
-    // TEST GAME
-    // =========================
-
-    GameProduct game1(
-        "G001", "Elden Ring", 900000, 5,
-        "PC", "RPG"
-    );
-
-    GameProduct game2(
-        "G002", "FIFA 26", 1200000, 4,
-        "Console", "Sports"
-    );
-
-
-    // =========================
-    // TEST MUSIC
-    // =========================
-
-    MusicProduct music1(
-        "M001", "Album A", 300000, 10,
-        "Artist A", 55
-    );
-
-    MusicProduct music2(
-        "M002", "Album B", 350000, 7,
-        "Artist B", 75
-    );
-
-
-    // =========================
-    // TEST POLYMORPHISM
-    // =========================
-
-    vector<Product*> products =
-    {
-        &book1,
-        &book2,
-        &game1,
-        &game2,
-        &music1,
-        &music2
-    };
-
-    cout << "===== PRODUCT TEST =====\n\n";
-
-    for (Product* product : products)
-    {
-        product->displayInfo();
-
-        cout << "Gia sau tinh: "
-             << product->calculateFinalPrice()
-             << " VND\n";
-
-        cout << "Loai san pham: "
-             << product->getType()
-             << "\n";
-
-        cout << "-------------------------\n";
-    }
-
-
-    // =========================
-    // TEST CUSTOMER
-    // =========================
-
-    cout << "\n===== CUSTOMER TEST =====\n\n";
-
-    Customer customer(
-        "Nguyen Van A",
-        "0901234567",
-        "a@gmail.com"
-    );
-
-    customer.displayInfo();
-
-    cout << "Ten: " << customer.getName() << "\n";
-    cout << "Phone: " << customer.getPhone() << "\n";
-    cout << "Email: " << customer.getEmail() << "\n";
-
-
-    return 0;
-}
+> 🎯 Ưu tiên: **code chạy đúng → test pass → push**.
+> Không tự thêm feature lớn ngoài task.
