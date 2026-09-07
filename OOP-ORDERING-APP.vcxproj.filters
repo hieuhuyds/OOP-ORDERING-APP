@@ -27,6 +27,9 @@
     <ClInclude Include="cores\products\GameProduct.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cores\customer\Customer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cores\products\Product.cpp">
@@ -39,6 +42,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cores\products\GameProduct.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="app\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cores\customer\Customer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

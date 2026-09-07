@@ -19,12 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cores\customer\Customer.h" />
     <ClInclude Include="cores\products\BookProduct.h" />
     <ClInclude Include="cores\products\GameProduct.h" />
     <ClInclude Include="cores\products\MusicProduct.h" />
     <ClInclude Include="cores\products\Product.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="app\main.cpp" />
+    <ClCompile Include="cores\customer\Customer.cpp" />
     <ClCompile Include="cores\products\BookProduct.cpp" />
     <ClCompile Include="cores\products\GameProduct.cpp" />
     <ClCompile Include="cores\products\MusicProduct.cpp" />
