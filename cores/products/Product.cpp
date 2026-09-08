@@ -1,20 +1,18 @@
 #include "Product.h"
 
-using namespace std;
-
 // Constructor
-Product::Product(string id, string name, double price, int stockQuantity, string category)
+Product::Product(std::string id, std::string name, double price, int stockQuantity, std::string category)
     : id(id), name(name), price(price >= 0 ? price : 0.0), stockQuantity(stockQuantity >= 0 ? stockQuantity : 0), category(category)
 {
 }
 
 // Getters
-string Product::getId() const
+std::string Product::getId() const
 {
     return id;
 }
 
-string Product::getName() const
+std::string Product::getName() const
 {
     return name;
 }
@@ -29,7 +27,7 @@ int Product::getStock() const
     return stockQuantity;
 }
 
-string Product::getCategory() const
+std::string Product::getCategory() const
 {
     return category;
 }

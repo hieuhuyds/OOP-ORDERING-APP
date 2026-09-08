@@ -1,29 +1,28 @@
 #pragma once
+#include <string>
 #include <iostream>
 #include <string>
 
-using namespace std;
-
-class Customer 
+class Customer
 {
 private:
-    string name;
-    string phone;
-    string email;
-    string address;
+    std::string name;
+    std::string phone;
+    std::string email;
+    std::string address;
 
 public:
-    Customer(string name = "", string phone = "", string email = "", string address = "");
+    Customer(std::string name = "", std::string phone = "", std::string email = "", std::string address = "");
 
-    string getName() const;
-    string getPhone() const;
-    string getEmail() const;
-    string getAddress() const;
+    std::string getName() const;
+    std::string getPhone() const;
+    std::string getEmail() const;
+    std::string getAddress() const;
 
-    void setName(string newName);
-    void setPhone(string newPhone);
-    void setEmail(string newEmail);
-    void setAddress(string newAddress);
+    void setName(std::string newName);
+    void setPhone(std::string newPhone);
+    void setEmail(std::string newEmail);
+    void setAddress(std::string newAddress);
 
     void input();
     void display() const;

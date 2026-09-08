@@ -51,6 +51,9 @@
     <ClInclude Include="manage\FileManage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cores\order\OrderItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cores\products\Product.cpp">
@@ -92,6 +95,9 @@
     <ClCompile Include="manage\FileManage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cores\order\OrderItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="TASK CAN LAM.md" />
@@ -101,5 +107,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="data\products.txt" />
+    <Text Include="data\OrdersHistory.txt" />
   </ItemGroup>
 </Project>

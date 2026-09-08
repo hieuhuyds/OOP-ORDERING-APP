@@ -1,65 +1,62 @@
 #include "Customer.h"
-
-using namespace std;
-
-Customer::Customer(string name, string phone, string email, string address)
+Customer::Customer(std::string name, std::string phone, std::string email, std::string address)
     : name(name), phone(phone), email(email), address(address)
 {
 }
 
 // Getter
-string Customer::getName() const {
+std::string Customer::getName() const {
     return name;
 }
 
-string Customer::getPhone() const {
+std::string Customer::getPhone() const {
     return phone;
 }
 
-string Customer::getEmail() const {
+std::string Customer::getEmail() const {
     return email;
 }
 
-string Customer::getAddress() const {
+std::string Customer::getAddress() const {
     return address;
 }
 
 // Setter
-void Customer::setName(string newName) {
+void Customer::setName(std::string newName) {
     name = newName;
 }
 
-void Customer::setPhone(string newPhone) {
+void Customer::setPhone(std::string newPhone) {
     phone = newPhone;
 }
 
-void Customer::setEmail(string newEmail) {
+void Customer::setEmail(std::string newEmail) {
     email = newEmail;
 }
 
-void Customer::setAddress(string newAddress) {
+void Customer::setAddress(std::string newAddress) {
     address = newAddress;
 }
 
 // Nhập thông tin
 void Customer::input() {
-    cout << "Nhap Name: ";
-    getline(cin >> ws, name);
+    std::cout << "Nhap Name: ";
+    getline(std::cin >> std::ws, name);
 
-    cout << "Nhap Phone: ";
-    getline(cin, phone);
+    std::cout << "Nhap Phone: ";
+    getline(std::cin, phone);
 
-    cout << "Nhap Email: ";
-    getline(cin, email);
+    std::cout << "Nhap Email: ";
+    getline(std::cin, email);
 
-    cout << "Nhap Address: ";
-    getline(cin, address);
+    std::cout << "Nhap Address: ";
+    getline(std::cin, address);
 }
 
 // Hiển thị thông tin
 void Customer::display() const {
-    cout << "Name: " << name << endl;
-    cout << "Phone: " << phone << endl;
-    cout << "Email: " << email << endl;
-    cout << "Address: " << address << endl;
+    std::cout << "Name: " << name << std::endl;
+    std::cout << "Phone: " << phone << std::endl;
+    std::cout << "Email: " << email << std::endl;
+    std::cout << "Address: " << address << std::endl;
 }
