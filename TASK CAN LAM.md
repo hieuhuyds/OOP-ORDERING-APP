@@ -11,45 +11,82 @@ Hoàn thành các module Cart → Order → File Management, sau đó build và 
 
 ## TASK 6 — CartItem
 
-**👤 Quang Đại**
-
 **File:**
 - `cores/cart/CartItem.h`
 - `cores/cart/CartItem.cpp`
 
 **Cần làm:**
-- Tạo `CartItem` gồm `Product* product` và `int quantity`.
-- Constructor + getters.
-- `increaseQuantity()` / `decreaseQuantity()`.
+- Dùng `Product* product` và `int quantity`.
+- Constructor `CartItem(Product* product, int quantity = 1)`.
+- `getProduct()`.
+- `getQuantity()`.
+- `increaseQuantity(int amount = 1)`.
+- `decreaseQuantity(int amount = 1)`.
 - `getSubtotal()`.
 
 **Logic:**
-- `Subtotal = calculateFinalPrice() × quantity`.
-- Quantity không được âm.
-- Không `delete Product`.
+- `product` trỏ tới Product object đã có trong hệ thống, không tự tạo Product mới.
+- `getProduct()` trả về Product đang được tham chiếu.
+- `increaseQuantity()` → tăng số lượng.
+- `decreaseQuantity()` → giảm số lượng, không để quantity < 0.
+- `Subtotal = product->calculateFinalPrice() × quantity`.
+- Không `delete Product` trong `CartItem`.
 
----
+**Lưu ý code style:**
+- Có `#pragma once` trong `.h`.
+- Include `../products/Product.h`.
+- Không dùng `using namespace std;`.
+- Dùng `std::`.
+- Không tự thêm chức năng ngoài task.
+
+**Test:**
+- [ ] Tạo một `BookProduct` → tạo `CartItem`.
+- [ ] Kiểm tra `getProduct()`.
+- [ ] Kiểm tra `getQuantity()`.
+- [ ] `increaseQuantity()` hoạt động đúng.
+- [ ] `decreaseQuantity()` hoạt động đúng.
+- [ ] Quantity không bị âm.
+- [ ] `getSubtotal()` tính đúng.
+- [ ] Test với `BookProduct`, `GameProduct` hoặc `MusicProduct` để kiểm tra `Product*`.
 
 ## TASK 7 — ShoppingCart
-
-**👤 Tường Vy**
 
 **File:**
 - `cores/cart/ShoppingCart.h`
 - `cores/cart/ShoppingCart.cpp`
 
 **Cần làm:**
-- Dùng `vector<CartItem> items`.
-- `addProduct()`, `removeProduct()`.
-- `displayCart()`, `calculateSubtotal()`.
-- `isEmpty()`, `clear()`, `getItems()`.
+- Dùng `std::vector<CartItem> items`.
+- `addProduct(Product* product, int quantity = 1)`.
+- `removeProduct(const std::string& productId)`.
+- `displayCart()`.
+- `calculateSubtotal()`.
+- `isEmpty()`.
+- `clear()`.
+- `getItems()`.
 
 **Logic:**
-- Thêm cùng Product → cộng quantity, không tạo item trùng ID.
-- Quantity không được vượt stock.
-- `Subtotal = tổng subtotal của các CartItem`.
+- Thêm sản phẩm mới → tạo `CartItem`.
+- Nếu Product đã có trong giỏ → cộng quantity, không tạo item trùng ID.
+- Không cho quantity vượt quá stock của Product.
+- Xóa sản phẩm theo Product ID.
+- `Subtotal = tổng subtotal của tất cả CartItem`.
+- Không `delete Product` trong `ShoppingCart`.
 
-**Ví dụ:** `B001 × 2` + `B001 × 3` → `B001 × 5`.
+**Lưu ý code style:**
+- Có `#pragma once` trong `.h`.
+- Không dùng `using namespace std;`.
+- Dùng `std::vector`, `std::string`,...
+- Không tự thêm chức năng ngoài task.
+
+**Test:**
+- [ ] Add sản phẩm.
+- [ ] Add cùng sản phẩm nhiều lần → cộng quantity.
+- [ ] Không vượt stock.
+- [ ] Remove sản phẩm.
+- [ ] Tính subtotal đúng.
+- [ ] Test cart rỗng.
+- [ ] `clear()` hoạt động.
 
 ---
 
