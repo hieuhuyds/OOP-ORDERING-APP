@@ -6,20 +6,20 @@
 #include "OrderItem.h"
 class Order{
 private:
-    string orderId;
-    time_t orderDate, expectedDeliveryDate;
+    std::string orderId;
+    std::time_t orderDate, expectedDeliveryDate;
     Customer customer;
-    string deliveryAddress;
-    vector<OrderItem> items;
+    std::string deliveryAddress;
+    std::vector<OrderItem> items;
     double shippingFee,totalPayment;
 public:
-    Order(string orderId="",Customer customer=Customer(),string deliveryAddress="",vector<OrderItem>items={});
-    string getOrderId() const;
-    time_t getOrderDate() const;
-    time_t getExpectedDeliveryDate()const;
+    Order(std::string orderId="",Customer customer=Customer(),std::string deliveryAddress="",std::vector<OrderItem>items={});
+    std::string getOrderId() const;
+    std::time_t getOrderDate() const;
+    std::time_t getExpectedDeliveryDate()const;
     Customer getCustomer() const;
-    string getDeliveryAddress() const;
-    vector<OrderItem> getItems() const;   
+    std::string getDeliveryAddress() const;
+    std::vector<OrderItem> getItems() const;   
     double getShippingFee() const;
     double getTotalPayment() const;
     double calculateTotal();

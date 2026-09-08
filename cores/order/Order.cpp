@@ -1,26 +1,26 @@
 #include "Order.h"
 #include <iostream>
-Order :: Order(string orderId,Customer customer,string deliveryAddress,vector<OrderItem>items)
+Order :: Order(std::string orderId,Customer customer,std::string deliveryAddress,std::vector<OrderItem>items)
 : orderId(orderId) , customer(customer), deliveryAddress(deliveryAddress),items(items),orderDate(time(nullptr)),
-expectedDeliveryDate(time(nullptr)+3*24*60*60), shippingFee(0), totalPayment(0){
+expectedDeliveryDate(orderDate+3*24*60*60), shippingFee(0), totalPayment(0){
 
 }
-string Order :: getOrderId() const{
+std::string Order :: getOrderId() const{
     return orderId;
 }
-time_t Order :: getOrderDate() const{
+std::time_t Order :: getOrderDate() const{
     return orderDate;
 }
-time_t Order:: getExpectedDeliveryDate() const {
+std::time_t Order:: getExpectedDeliveryDate() const {
     return expectedDeliveryDate;
 }
 Customer Order :: getCustomer() const {
     return customer;
 }
-string Order ::getDeliveryAddress() const{
+std::string Order ::getDeliveryAddress() const{
     return deliveryAddress;
 }
-vector<OrderItem> Order :: getItems() const{
+std::vector<OrderItem> Order :: getItems() const{
     return items;
 }
 double Order:: getShippingFee() const{
@@ -43,25 +43,25 @@ double Order :: calculateTotal(){
     totalPayment =subtotal + shippingFee;
     return totalPayment;
 };
-string formatDate(time_t t){
-    tm* timeInfo = localtime(&t);
-    string day = to_string(timeInfo->tm_mday);
-    string month = to_string(timeInfo->tm_mon+1);
-    string year = to_string(timeInfo->tm_year + 1900);
+std::string formatDate(std::time_t t){
+    std::tm* timeInfo = std::localtime(&t);
+    std::string day = std::to_string(timeInfo->tm_mday);
+    std::string month = std::to_string(timeInfo->tm_mon+1);
+    std::string year = std::to_string(timeInfo->tm_year + 1900);
     return day + "/" + month +"/" +year;
 }
 void Order :: displayOrder() const {
-    cout<<"ID: "<< orderId<< endl;
-    cout<<"Order Date: " << formatDate(orderDate) << endl;
+    std::cout<<"ID: "<< orderId<< std::endl;
+    std::cout<<"Order Date: " << formatDate(orderDate) << std::endl;
     customer.display();
-    cout<< "Delivery Address: " << deliveryAddress << endl;
-    cout<<"ExpectedDeliveryDate: "<<formatDate(expectedDeliveryDate)<< endl;
-    cout<< "Item: " << endl;
+    std::cout<< "Delivery Address: " << deliveryAddress << std::endl;
+    std::cout<<"ExpectedDeliveryDate: "<<formatDate(expectedDeliveryDate)<< std::endl;
+    std::cout<< "Item: " << std::endl;
     for(OrderItem item:items){
         item.display();
-        cout<<"------------------"<< endl;
+        std::cout<<"------------------"<< std::endl;
     }
-    cout << "Shipping Fee: " << shippingFee << endl;
-    cout << "Total Payment: " << totalPayment << endl;
+    std::cout << "Shipping Fee: " << shippingFee << std::endl;
+    std::cout << "Total Payment: " << totalPayment << std::endl;
 
 }
