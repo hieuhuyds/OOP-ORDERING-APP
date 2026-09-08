@@ -24,6 +24,7 @@
     <ClInclude Include="cores\cart\ShoppingCart.h" />
     <ClInclude Include="cores\customer\Customer.h" />
     <ClInclude Include="cores\order\Order.h" />
+    <ClInclude Include="cores\order\OrderItem.h" />
     <ClInclude Include="cores\products\BookProduct.h" />
     <ClInclude Include="cores\products\GameProduct.h" />
     <ClInclude Include="cores\products\MusicProduct.h" />
@@ -38,6 +39,7 @@
     <ClCompile Include="cores\cart\ShoppingCart.cpp" />
     <ClCompile Include="cores\customer\Customer.cpp" />
     <ClCompile Include="cores\order\Order.cpp" />
+    <ClCompile Include="cores\order\OrderItem.cpp" />
     <ClCompile Include="cores\products\BookProduct.cpp" />
     <ClCompile Include="cores\products\GameProduct.cpp" />
     <ClCompile Include="cores\products\MusicProduct.cpp" />
@@ -54,6 +56,7 @@
     <None Include="TASK CAN LAM.md" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="data\OrdersHistory.txt" />
     <Text Include="data\products.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

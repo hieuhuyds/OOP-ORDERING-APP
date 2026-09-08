@@ -1,20 +1,20 @@
 #pragma once
+#include <string>
 #include "Product.h"
 #include <string>
-using namespace std;
 
 class GameProduct : public Product {
 private:
-    string platform;
-    string genre;
+    std::string platform;
+    std::string genre;
 public:
-    GameProduct(string id = "", string name = "", double price = 0.0, int stockQuantity = 0, string platform = "", string genre = "");
+    GameProduct(std::string id = "", std::string name = "", double price = 0.0, int stockQuantity = 0, std::string platform = "", std::string genre = "");
 
-    string getPlatform() const;
-    string getGenre() const;
+    std::string getPlatform() const;
+    std::string getGenre() const;
 
     void displayInfo() const override;
     double calculateFinalPrice() const override;
-    string getType() const override;
-      
+    std::string getType() const override;
+
 };
