@@ -3,8 +3,7 @@
 #include <fstream>
 #include <sstream>
 
-// DOC NOI DUNG FILE
-// Mo file va doc toan bo noi dung vao fileContent.
+// DOC NOI DUNG FILE: Mo file va doc toan bo noi dung vao fileContent.
 bool FileManage::readFile(const std::string& filePath,
     std::string& fileContent)
 {
@@ -27,9 +26,7 @@ bool FileManage::readFile(const std::string& filePath,
     return true;
 }
 
-// GHI FILE
-// Ghi noi dung moi vao file.
-// Neu file da co noi dung thi noi dung cu se bi ghi de.
+// GHI FILE: Ghi noi dung moi vao file. Neu file da co noi dung thi noi dung cu se bi ghi de.
 bool FileManage::writeFile(const std::string& filePath,
     const std::string& fileContent)
 {
@@ -48,8 +45,7 @@ bool FileManage::writeFile(const std::string& filePath,
     return true;
 }
 
-// THEM NOI DUNG VAO CUOI FILE
-// Them noi dung moi vao cuoi file ma khong xoa noi dung cu.
+// THEM NOI DUNG VAO CUOI FILE: Them noi dung moi vao cuoi file ma khong xoa noi dung cu.
 bool FileManage::appendFile(const std::string& filePath,
     const std::string& newContent)
 {
