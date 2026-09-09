@@ -1,202 +1,311 @@
-# 📋 TASK CẦN LÀM — OOP ORDERING APPLICATION
+# TASK CÒN LẠI 9.9 - DEADLINE 12H TRƯA 10.9
 
-> 📅 Ngày làm: **07/09**
-> ⏰ Deadline: **12:00 trưa 08/09**
-
-## 🎯 Mục tiêu
-
-Hoàn thành các module Cart → Order → File Management, sau đó build và test.
-
----
-
-## TASK 6 — CartItem
+## TASK 10 — ProductManage   - Tường Vy
 
 **File:**
-- `cores/cart/CartItem.h`
-- `cores/cart/CartItem.cpp`
+- `manage/ProductManage.h`
+- `manage/ProductManage.cpp`
 
 **Cần làm:**
-- Dùng `Product* product` và `int quantity`.
-- Constructor `CartItem(Product* product, int quantity = 1)`.
-- `getProduct()`.
-- `getQuantity()`.
-- `increaseQuantity(int amount = 1)`.
-- `decreaseQuantity(int amount = 1)`.
-- `getSubtotal()`.
+- Dùng `std::vector<Product*> products`.
+- `~ProductManage()`.
+- `void loadProducts(const std::string& filename)`.
+- `bool saveProducts(const std::string& filename) const`.
+- `Product* findProductById(const std::string& productId) const`.
+- `void displayProducts() const`.
+- `const std::vector<Product*>& getProducts() const`.
+- Đọc dữ liệu từ `data/products.txt`.
+- `BOOK` → tạo `BookProduct`.
+- `GAME` → tạo `GameProduct`.
+- `MUSIC` → tạo `MusicProduct`.
+- Lưu các object vào `products`.
+- Tìm sản phẩm theo Product ID.
+- Hiển thị danh sách sản phẩm.
+- Ghi lại dữ liệu vào `products.txt`.
+- Destructor giải phóng các `Product*`.
 
 **Logic:**
-- `product` trỏ tới Product object đã có trong hệ thống, không tự tạo Product mới.
-- `getProduct()` trả về Product đang được tham chiếu.
-- `increaseQuantity()` → tăng số lượng.
-- `decreaseQuantity()` → giảm số lượng, không để quantity < 0.
-- `Subtotal = product->calculateFinalPrice() × quantity`.
-- Không `delete Product` trong `CartItem`.
+- Không tìm thấy Product ID → trả về `nullptr`.
+- `displayProducts()` gọi `displayInfo()` của từng Product để thể hiện đa hình.
+- `saveProducts()` phải giữ đúng format của `products.txt`.
+- Khi save phải ghi đúng dữ liệu riêng của `BookProduct`, `GameProduct`, `MusicProduct`.
+- Không để memory leak.
+- Không cho copy `ProductManage` để tránh shallow copy và double free.
 
-**Lưu ý code style:**
-- Có `#pragma once` trong `.h`.
-- Include `../products/Product.h`.
-- Không dùng `using namespace std;`.
-- Dùng `std::`.
-- Không tự thêm chức năng ngoài task.
-
-**Test:**
-- [ ] Tạo một `BookProduct` → tạo `CartItem`.
-- [ ] Kiểm tra `getProduct()`.
-- [ ] Kiểm tra `getQuantity()`.
-- [ ] `increaseQuantity()` hoạt động đúng.
-- [ ] `decreaseQuantity()` hoạt động đúng.
-- [ ] Quantity không bị âm.
-- [ ] `getSubtotal()` tính đúng.
-- [ ] Test với `BookProduct`, `GameProduct` hoặc `MusicProduct` để kiểm tra `Product*`.
-
-## TASK 7 — ShoppingCart
-
-**File:**
-- `cores/cart/ShoppingCart.h`
-- `cores/cart/ShoppingCart.cpp`
-
-**Cần làm:**
-- Dùng `std::vector<CartItem> items`.
-- `addProduct(Product* product, int quantity = 1)`.
-- `removeProduct(const std::string& productId)`.
-- `displayCart()`.
-- `calculateSubtotal()`.
-- `isEmpty()`.
-- `clear()`.
-- `getItems()`.
-
-**Logic:**
-- Thêm sản phẩm mới → tạo `CartItem`.
-- Nếu Product đã có trong giỏ → cộng quantity, không tạo item trùng ID.
-- Không cho quantity vượt quá stock của Product.
-- Xóa sản phẩm theo Product ID.
-- `Subtotal = tổng subtotal của tất cả CartItem`.
-- Không `delete Product` trong `ShoppingCart`.
+**Lưu ý format `products.txt`:**
+- Đây là format dữ liệu bắt buộc khi `loadProducts()` đọc file và `saveProducts()` ghi file.
+- Dùng dấu `|` để ngăn cách các trường.
+- Không có header.
+- Format chung:
+  `TYPE|ID|NAME|PRICE|STOCK|ATTRIBUTE1|ATTRIBUTE2`
+- `BOOK` → `BOOK|ID|NAME|PRICE|STOCK|AUTHOR|PAGES`
+- `GAME` → `GAME|ID|NAME|PRICE|STOCK|PLATFORM|GENRE`
+- `MUSIC` → `MUSIC|ID|NAME|PRICE|STOCK|ARTIST|DURATION`
+- Khi `loadProducts()` phải đọc đúng thứ tự field trên.
+- Khi `saveProducts()` phải ghi đúng thứ tự field và đúng format trên.
 
 **Lưu ý code style:**
 - Có `#pragma once` trong `.h`.
 - Không dùng `using namespace std;`.
 - Dùng `std::vector`, `std::string`,...
+- Có thể thêm:
+  `ProductManage(const ProductManage&) = delete;`
+  `ProductManage& operator=(const ProductManage&) = delete;`
 - Không tự thêm chức năng ngoài task.
 
 **Test:**
-- [ ] Add sản phẩm.
-- [ ] Add cùng sản phẩm nhiều lần → cộng quantity.
-- [ ] Không vượt stock.
-- [ ] Remove sản phẩm.
-- [ ] Tính subtotal đúng.
-- [ ] Test cart rỗng.
-- [ ] `clear()` hoạt động.
+- [ ] Load được `products.txt`.
+- [ ] Tạo đúng `BookProduct`, `GameProduct`, `MusicProduct`.
+- [ ] Search đúng Product ID.
+- [ ] Search ID không tồn tại → `nullptr`.
+- [ ] `displayProducts()` hiển thị đúng.
+- [ ] `saveProducts()` ghi đúng format.
+- [ ] Thay đổi stock → save lại đúng file.
+- [ ] Destructor giải phóng Product.
 
----
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## TASK 8 — OrderItem
-
-**👤 Thư**
+## TASK 11 — OrderManage - Minh Tiến
 
 **File:**
-- `cores/order/OrderItem.h`
-- `cores/order/OrderItem.cpp`
+- `manage/OrderManage.h`
+- `manage/OrderManage.cpp`
 
 **Cần làm:**
-- Lưu `productId`, `productName`, `finalPrice`, `quantity`.
-- Constructor + getters.
-- `getSubtotal()`.
-- `display()`.
+- Dùng `std::vector<Order> orders`.
+- `bool checkout(const Customer& customer, ShoppingCart& cart, ProductManage& productManage)`.
+- `void displayOrderHistory() const`.
+- `std::string generateOrderId() const`.
+- Quản lý danh sách `Order`.
+- Xử lý checkout.
+- Từ các `CartItem` tạo `OrderItem`.
+- Tạo `Order`.
+- Lưu đơn vào `data/OrderHistory.txt`.
 
 **Logic:**
-- `OrderItem` là snapshot sản phẩm tại thời điểm checkout.
-- Luồng: `CartItem → Checkout → OrderItem`.
-- Không dùng `Product*`.
-- `Subtotal = finalPrice × quantity`.
+- Nếu cart rỗng → checkout thất bại.
+- Trước khi checkout, kiểm tra tồn kho của tất cả sản phẩm trong cart.
+- Với mỗi `CartItem`:
+  - Lấy Product tương ứng.
+  - Kiểm tra Product có tồn tại.
+  - Kiểm tra `quantity <= stock`.
+- Nếu có sản phẩm không tồn tại hoặc không đủ stock:
+  - Checkout thất bại.
+  - Không tạo Order.
+  - Không trừ stock.
+  - Không clear cart.
+- Nếu tất cả hợp lệ:
+  - Tạo `OrderItem`.
+  - Sinh OrderID.
+  - Tạo `Order`.
+  - Gọi `calculateTotal()`.
+  - Trừ stock Product.
+  - Gọi `productManage.saveProducts(...)`.
+  - Lưu Order vào `OrderHistory.txt`.
+  - `cart.clear()` sau khi checkout thành công.
+- Dùng `FileManage` để ghi file.
+- Không `delete Product`.
 
----
+**Quy ước OrderID:**
+- Prefix: `DH`.
+- 3 chữ số phía sau.
+- Ví dụ:
+  - `DH001`
+  - `DH002`
+  - `DH003`
+- Không được trùng OrderID cũ.
+- Khi restart app, OrderID phải tiếp tục tăng.
+- Không dùng `orders.size()` đơn thuần để sinh mã.
+- Có thể đọc `OrderHistory.txt` để tìm số lớn nhất hiện tại rồi tăng lên `1`.
 
-## TASK 9 — Order
+**Lưu ý code style:**
+- Có `#pragma once` trong `.h`.
+- Không dùng `using namespace std;`.
+- Dùng `std::vector`, `std::string`,...
+- Không tự viết lại logic subtotal/shipping của `Order`.
+- Không thêm payment/admin.
+- Không tự thêm chức năng ngoài task.
 
-**👤 Minh Tiến**
+**Lưu ý format `OrderHistory.txt`:**
+- Mỗi Order lưu thành một record trong file.
+- Dùng dấu `|` để ngăn cách các field.
+- OrderID theo dạng:
+  `DH001`, `DH002`, `DH003`,...
+- `OrderDate` và `ExpectedDeliveryDate` hiển thị theo format `dd/mm/yyyy`.
+- Phần danh sách sản phẩm phải lưu đủ thông tin để có thể đọc lại và hiển thị được bill.
+- Không tự đổi thứ tự field hoặc tự tạo format khác.
+- `displayOrderHistory()` phải đọc đúng format đã lưu và hiển thị từng Order bằng `Order::displayOrder()`.
+
+**Test:**
+- [ ] Cart rỗng → checkout thất bại.
+- [ ] Product không tồn tại → checkout thất bại.
+- [ ] Quantity vượt stock → checkout thất bại.
+- [ ] Checkout lỗi → stock không đổi.
+- [ ] Checkout lỗi → cart không bị clear.
+- [ ] Checkout thành công.
+- [ ] OrderID đúng dạng `DH001`, `DH002`,...
+- [ ] Restart app → OrderID tiếp tục tăng.
+- [ ] `OrderItem` đúng dữ liệu.
+- [ ] Total đúng.
+- [ ] Stock giảm đúng.
+- [ ] `products.txt` được cập nhật.
+- [ ] `OrderHistory.txt` lưu được đơn.
+- [ ] Cart được clear sau checkout.
+ 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## TASK 12 — OrderingApplication ------- 2 Thành viên thực hiện: (Thành viên 3: Quang Đại) + (Thành viên 4: Thư)
+
+
+**Lưu ý giao diện/menu:**
+- Menu dùng tiếng Anh và giữ thống nhất:
+  `1 → View products`
+  `2 → Search product`
+  `3 → Add product to cart`
+  `4 → View cart`
+  `5 → Remove product from cart`
+  `6 → Checkout`
+  `7 → View order history`
+  `0 → Exit`
+- `OrderingApplication` chỉ điều phối và gọi các module, không tự xử lý format file.
+- `7 → View order history` phải gọi `OrderManage::displayOrderHistory()`.
+- Bill được hiển thị thông qua `Order::displayOrder()`.
+
+### Interface / Signature cuối cùng của OrderingApplication
+
+class OrderingApplication
+{
+private:
+    ProductManage productManage;
+    OrderManage orderManage;
+    ShoppingCart cart;
+    Customer customer;
+
+    void addProductToCart();
+    void viewCart() const;
+    void removeProductFromCart();
+    void checkout();
+    void viewOrderHistory() const;
+
+public:
+    void run();
+    void displayMenu() const;
+    void viewProducts() const;
+    void searchProduct() const;
+};
 
 **File:**
-- `cores/order/Order.h`
-- `cores/order/Order.cpp`
+- `app/OrderingApplication.h`
+- `app/OrderingApplication.cpp`
 
-**Cần làm:**
-- Lưu `orderId`, `orderDate`, `Customer`.
-- Lưu `deliveryAddress`, `expectedDeliveryDate`.
-- Lưu `vector<OrderItem> items`.
-- Lưu `shippingFee`, `totalPayment`.
-- Constructor + getters cần thiết.
-- `calculateTotal()`.
-- `displayOrder()`.
+**Chia công việc:**
 
-**Logic ngày:**
-- `orderDate` tự lấy system date, user không nhập.
-- Dùng `<chrono>` + `<ctime>`.
-- Format `dd/mm/yyyy`.
-- `expectedDeliveryDate = orderDate + 3 ngày`.
+### Thành viên 3 — Menu + Product + Cart - Quang Đại
 
-**Logic phí:**
-- Subtotal < 500000 → Shipping = 30000.
-- Subtotal >= 500000 → Shipping = 0.
-- `Total = Subtotal + Shipping`.
+**Phụ trách:**
+- `run()`
+- `displayMenu()`
+- `viewProducts()`
+- `searchProduct()`
+- `addProductToCart()`
+- `viewCart()`
+- `removeProductFromCart()`
 
----
+**Signature:**
+- `void run()`
+- `void displayMenu() const`
+- `void viewProducts() const`
+- `void searchProduct() const`
+- `void addProductToCart()`
+- `void viewCart() const`
+- `void removeProductFromCart()`
 
-## TASK 10 — FileManage
+**Logic:**
+- Khi app khởi động → gọi `productManage.loadProducts("data/products.txt")`.
+- `1` → View products.
+- `2` → Search product.
+- `3` → Add product to cart.
+- `4` → View cart.
+- `5` → Remove product from cart.
+- `6` → gọi `checkout()`.
+- `7` → gọi `viewOrderHistory()`.
+- `0` → thoát.
 
-**👤 Hiếu Huy — Leader**
+**Chi tiết:**
+- `viewProducts()` → gọi `productManage.displayProducts()`.
+- `searchProduct()` → nhập Product ID → gọi `productManage.findProductById()`.
+- Nếu tìm thấy → `displayInfo()`.
+- `addProductToCart()` → nhập Product ID + quantity → tìm Product → gọi `cart.addProduct()`.
+- `viewCart()` → gọi `cart.displayCart()`.
+- `removeProductFromCart()` → nhập Product ID → gọi `cart.removeProduct()`.
 
-**File:**
-- `manage/FileManage.h`
-- `manage/FileManage.cpp`
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-**Data:**
-- `data/products.txt`
-- `data/OrderHistory.txt`
+**Quy định Git Cho Quang Đại (Thành viên 3) và Thư (Thành viên 4):**
+- Thành viên 3 (Quang Đại) dựng trước khung `OrderingApplication.h/.cpp`.
+- Thành viên 3 (Quang Đại) viết `run()`, `displayMenu()` và switch menu `0 → 7`.
+- Sau khi dựng khung → commit/push.
+- Thành viên 4 (Thư) pull source mới nhất rồi mới code phần checkout/history.
+- Sau khi khung đã chốt, không sửa lại `run()` và `displayMenu()`.
+- Không tạo `OrderingApplication2`.
 
-**Cần làm:**
-- Đọc dữ liệu từ file.
-- Ghi dữ liệu vào file.
-- Append dữ liệu mà không làm mất dữ liệu cũ.
-- Hỗ trợ lưu Order History.
-- Test đọc `products.txt`.
-- Test ghi/append `OrderHistory.txt`.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-> `OrderHistory.txt` chỉ là file lưu lịch sử Order, không cần tạo class `OrderHistory`.
-
----
-
-# 🧪 TEST
-
-**Cart:**
-- [ ] Add sản phẩm.
-- [ ] Add trùng → cộng quantity.
-- [ ] Không vượt stock.
-- [ ] Remove sản phẩm.
-- [ ] Tính subtotal.
-- [ ] Test cart rỗng.
-
-**Order:**
-- [ ] OrderItem lưu đúng snapshot.
-- [ ] Order date lấy system date.
-- [ ] Expected delivery +3 ngày.
-- [ ] Shipping đúng điều kiện.
-- [ ] Total payment đúng.
-- [ ] Display Order.
-
-**File:**
-- [ ] Đọc `products.txt`.
-- [ ] Ghi file.
-- [ ] Append `OrderHistory.txt`.
-- [ ] Kiểm tra dữ liệu cũ không bị mất.
+**Test:**
+- [ ] Load products.
+- [ ] View products.
+- [ ] Search đúng Product ID.
+- [ ] Search sai Product ID.
+- [ ] Add product vào cart.
+- [ ] View cart.
+- [ ] Remove product khỏi cart.
 
 ---
 
-# ✅ QUY TRÌNH NỘP CODE
+### Thành viên 4 — Checkout + Order History - Thư
 
-Mỗi thành viên:
+**Phụ trách:**
+- `checkout()`
+- `viewOrderHistory()`
 
-`Code → Build → Test → Commit → Push branch → Pull Request`
+**Signature:**
+- `void checkout()`
+- `void viewOrderHistory() const`
 
-> 🎯 Ưu tiên: **code chạy đúng → test pass → push**.
-> Không tự thêm feature lớn ngoài task.
+**Logic:**
+- `6` → gọi `checkout()`.
+- Trong `checkout()`:
+  - Kiểm tra cart.
+  - Nhập thông tin Customer:
+    - Name
+    - Phone
+    - Email
+    - Address
+  - Có thể dùng `Customer::input()` nếu class đã có method này.
+  - Gọi:
+    `orderManage.checkout(customer, cart, productManage)`.
+- `7` → gọi `viewOrderHistory()`.
+- `viewOrderHistory()` → gọi:
+  `orderManage.displayOrderHistory()`.
+
+**Lưu ý:**
+- Không tự tính subtotal.
+- Không tự tính shipping.
+- Không tự trừ stock.
+- Không tự ghi `OrderHistory.txt`.
+- Không sửa lại `run()` và `displayMenu()`.
+- Không tạo file `OrderingApplication` thứ hai.
+- Không dùng `using namespace std;`.
+- Dùng `std::`.
+
+**Test:**
+- [ ] Checkout khi cart rỗng.
+- [ ] Checkout khi thiếu stock.
+- [ ] Checkout thành công.
+- [ ] Nhập đủ Name, Phone, Email, Address.
+- [ ] OrderID được tạo.
+- [ ] Stock giảm.
+- [ ] `products.txt` cập nhật.
+- [ ] `OrderHistory.txt` lưu đơn.
+- [ ] Cart được clear.
+- [ ] View order history.
