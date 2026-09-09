@@ -127,14 +127,26 @@
 - Không tự thêm chức năng ngoài task.
 
 **Lưu ý format `OrderHistory.txt`:**
-- Mỗi Order lưu thành một record trong file.
+- Mỗi Order lưu thành một dòng trong file.
 - Dùng dấu `|` để ngăn cách các field.
-- OrderID theo dạng:
-  `DH001`, `DH002`, `DH003`,...
-- `OrderDate` và `ExpectedDeliveryDate` hiển thị theo format `dd/mm/yyyy`.
-- Phần danh sách sản phẩm phải lưu đủ thông tin để có thể đọc lại và hiển thị được bill.
+- Format cố định:
+
+`OrderID|OrderDate|CustomerName|Phone|Email|DeliveryAddress|Items|ShippingFee|TotalPayment|ExpectedDeliveryDate`
+
+- `OrderID`: dạng `DH001`, `DH002`, `DH003`,...
+- `OrderDate` và `ExpectedDeliveryDate`: format `dd/mm/yyyy`.
+- `Items` có format:
+
+`ProductID,ProductName,FinalPrice,Quantity,Subtotal`
+
+- Nếu Order có nhiều sản phẩm → dùng `;` để ngăn cách các Item.
+- `OrderManage` phải lưu và đọc đúng format trên.
+- `displayOrderHistory()` đọc dữ liệu từ file và hiển thị từng Order bằng `Order::displayOrder()`.
 - Không tự đổi thứ tự field hoặc tự tạo format khác.
-- `displayOrderHistory()` phải đọc đúng format đã lưu và hiển thị từng Order bằng `Order::displayOrder()`.
+
+**Ví dụ:**
+
+`DH001|09/09/2026|Nguyen Van A|0901234567|a@gmail.com|123 Nguyen Trai|B001,Clean Code,250000,2,500000;G001,Elden Ring,900000,1,900000|0|1400000|12/09/2026`
 
 **Test:**
 - [ ] Cart rỗng → checkout thất bại.
@@ -156,7 +168,6 @@
 
 ## TASK 12 — OrderingApplication ------- 2 Thành viên thực hiện: (Thành viên 3: Quang Đại) + (Thành viên 4: Thư)
 
-
 **Lưu ý giao diện/menu:**
 - Menu dùng tiếng Anh và giữ thống nhất:
   `1 → View products`
@@ -170,6 +181,18 @@
 - `OrderingApplication` chỉ điều phối và gọi các module, không tự xử lý format file.
 - `7 → View order history` phải gọi `OrderManage::displayOrderHistory()`.
 - Bill được hiển thị thông qua `Order::displayOrder()`.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Quy định Git Cho Quang Đại (Thành viên 3) và Thư (Thành viên 4):**
+- Thành viên 3 (Quang Đại) dựng trước khung `OrderingApplication.h/.cpp`.
+- Thành viên 3 (Quang Đại) viết `run()`, `displayMenu()` và switch menu `0 → 7`.
+- Sau khi dựng khung → commit/push.
+- Thành viên 4 (Thư) pull source mới nhất rồi mới code phần checkout/history.
+- Sau khi khung đã chốt, không sửa lại `run()` và `displayMenu()`.
+- Không tạo `OrderingApplication2`.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Interface / Signature cuối cùng của OrderingApplication
 
@@ -238,18 +261,6 @@ public:
 - `addProductToCart()` → nhập Product ID + quantity → tìm Product → gọi `cart.addProduct()`.
 - `viewCart()` → gọi `cart.displayCart()`.
 - `removeProductFromCart()` → nhập Product ID → gọi `cart.removeProduct()`.
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-**Quy định Git Cho Quang Đại (Thành viên 3) và Thư (Thành viên 4):**
-- Thành viên 3 (Quang Đại) dựng trước khung `OrderingApplication.h/.cpp`.
-- Thành viên 3 (Quang Đại) viết `run()`, `displayMenu()` và switch menu `0 → 7`.
-- Sau khi dựng khung → commit/push.
-- Thành viên 4 (Thư) pull source mới nhất rồi mới code phần checkout/history.
-- Sau khi khung đã chốt, không sửa lại `run()` và `displayMenu()`.
-- Không tạo `OrderingApplication2`.
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Test:**
 - [ ] Load products.
