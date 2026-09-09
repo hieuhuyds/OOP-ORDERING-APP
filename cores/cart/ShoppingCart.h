@@ -30,5 +30,17 @@ public:
   bool isEmpty() const;
   void clear();
 
-  std::vector<CartItem> getItems() const;
+  const std::vector<CartItem>& getItems() const;
+
+  **Thay đổi : **
+	  -Đổi từ :
+  `std: : vector<CartItem> getItems() const`
+	  - Thành:
+  `const std::vector<CartItem>&getItems() const`
+
+	  * *Lý do:**
+	  -Trả về tham chiếu đến `items` thay vì tạo bản copy của toàn bộ `std::vector<CartItem>`.
+	  - Có `const` để bên ngoài chỉ đọc danh sách CartItem, không sửa trực tiếp `items`.
+	  - `ShoppingCart.cpp` phải sửa signature cho khớp với `.h`.
+
 };
