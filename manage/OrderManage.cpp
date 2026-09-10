@@ -54,7 +54,7 @@ bool OrderManage::checkout(const Customer& customer, ShoppingCart& cart, Product
     for (const auto& item : cart.getItems()) {
         Product* p = productManage.findProductById(item.getProduct()->getId());
         
-        OrderItem orderItem(p->getId(), p->getName(), p->getPrice(), item.getQuantity());
+        OrderItem orderItem(p->getId(), p->getName(), p->calculateFinalPrice(), item.getQuantity()); // chỉnh sửa p->getPrice thành p->calculateFinalPrice vì lấy giá bán cuối
         orderItems.push_back(orderItem);
 
         p->setStock(p->getStock() - item.getQuantity());
