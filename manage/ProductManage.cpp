@@ -1,8 +1,7 @@
 #include "ProductManage.h"
-#include "Product.h"
-#include "BookProduct.h"
-#include "GameProduct.h"
-#include "MusicProduct.h"
+#include "../cores/products/BookProduct.h"
+#include "../cores/products/GameProduct.h"
+#include "../cores/products/MusicProduct.h"
 #include <fstream>
 #include <sstream>
 
