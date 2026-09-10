@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
-#include "Product.h"
+#include "../cores/products/Product.h"
 
 class ProductManage {
 private:
