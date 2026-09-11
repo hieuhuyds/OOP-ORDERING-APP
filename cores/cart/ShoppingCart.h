@@ -14,7 +14,7 @@ public:
   // Them Product vao gio hang
   // - Neu Product da co trong gio -> cong don quantity, khong tao item trung ID
   // - Khong cho quantity vuot qua stock cua Product
-  void addProduct(Product *product, int quantity = 1);
+  bool addProduct(Product *product, int quantity = 1);
 
   // Xoa san pham khoi gio theo Product ID
   bool removeProduct(const std::string &productId);
