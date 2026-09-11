@@ -17,7 +17,7 @@ public:
   void addProduct(Product *product, int quantity = 1);
 
   // Xoa san pham khoi gio theo Product ID
-  void removeProduct(const std::string &productId);
+  bool removeProduct(const std::string &productId);
 
   void displayCart() const;
 

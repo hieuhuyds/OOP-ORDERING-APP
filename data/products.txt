@@ -1,4 +1,3 @@
-TYPE|ID|NAME|PRICE|STOCK|ATTRIBUTE1|ATTRIBUTE2
 BOOK|B001|Clean Code|250000|10|Robert Martin|450
 BOOK|B002|C++ Primer|300000|8|Stanley Lippman|800
 BOOK|B003|The C++ Programming Language|350000|6|Bjarne Stroustrup|900

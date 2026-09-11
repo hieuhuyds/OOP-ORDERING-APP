@@ -19,6 +19,7 @@ void ProductManage::loadProducts(const std::string& filename) {
         return;
 }
     std::string line;
+
     while (std::getline(file, line)) {
         if (line.empty()) {
             continue;

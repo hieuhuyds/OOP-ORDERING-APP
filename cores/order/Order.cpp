@@ -1,4 +1,5 @@
 #include "Order.h"
+#include <iomanip>
 #include <iostream>
 
 Order :: Order(std::string orderId,Customer customer,std::string deliveryAddress,std::vector<OrderItem>items)
@@ -65,6 +66,12 @@ std::string formatDate(std::time_t t) // Dùng localtime_s() để lấy thời 
     std::string month = std::to_string(timeInfo.tm_mon + 1);
     std::string year = std::to_string(timeInfo.tm_year + 1900);
 
+    if (day.length() == 1)
+        day = "0" + day;
+
+    if (month.length() == 1)
+        month = "0" + month;
+
     return day + "/" + month + "/" + year;
 }
 
@@ -79,6 +86,7 @@ void Order :: displayOrder() const {
         item.display();
         std::cout<<"------------------"<< std::endl;
     }
+    std::cout << std::fixed << std::setprecision(0);
     std::cout << "Shipping Fee: " << shippingFee << std::endl;
     std::cout << "Total Payment: " << totalPayment << std::endl;
 

@@ -3,6 +3,25 @@
 #include <sstream>
 #include <iomanip>
 #include <iostream>
+#include <ctime>
+
+std::string formatOrderHistoryDate(std::time_t t)
+{
+    std::tm timeInfo{};
+    localtime_s(&timeInfo, &t);
+
+    std::string day = std::to_string(timeInfo.tm_mday);
+    std::string month = std::to_string(timeInfo.tm_mon + 1);
+    std::string year = std::to_string(timeInfo.tm_year + 1900);
+
+    if (day.length() == 1)
+        day = "0" + day;
+
+    if (month.length() == 1)
+        month = "0" + month;
+
+    return day + "/" + month + "/" + year;
+}
 
 std::string OrderManage::generateOrderId() const {
     int maxId = 0;
@@ -127,7 +146,12 @@ void OrderManage::displayOrderHistory() const {
         std::getline(ss, total, '|');
         std::getline(ss, deliveryDate, '|');
 
-        std::cout << "Ma DH: " << orderId << " | Ngay dat: " << date << "\n";
+        std::time_t orderDate = std::stoll(date);
+
+        std::cout << "Ma DH: " << orderId
+            << " | Ngay dat: "
+            << formatOrderHistoryDate(orderDate)
+            << "\n";
         std::cout << "Khach hang: " << name << " - " << phone << " (" << address << ")\n";
         std::cout << "Danh sach san pham:\n";
 
@@ -142,11 +166,20 @@ void OrderManage::displayOrderHistory() const {
             std::getline(itemBuf, pQty, ',');
             std::getline(itemBuf, pSubtotal, ',');
 
-            std::cout << "  + [" << pId << "] " << pName << " x" << pQty 
-                      << " (Gia: " << pPrice << " -> Thanh tien: " << pSubtotal << ")\n";
+            std::cout << "  + [" << pId << "] " << pName
+                << " x" << pQty
+                << " (Gia: " << std::stod(pPrice)
+                << " -> Thanh tien: " << std::stod(pSubtotal) << ")\n";
         }
-        std::cout << "Phi ship: " << shipFee << " | Tong thanh toan: " << total << "\n";
-        std::cout << "Ngay giao du kien: " << deliveryDate << "\n";
+        std::cout << std::fixed << std::setprecision(0);
+
+        std::cout << "Phi ship: " << std::stod(shipFee)
+            << " | Tong thanh toan: " << std::stod(total) << "\n";
+
+        std::time_t expectedDeliveryDate = std::stoll(deliveryDate);
+        std::cout << "Ngay giao du kien: "
+            << formatOrderHistoryDate(expectedDeliveryDate)
+            << "\n";
         std::cout << "--------------------------------------------------------\n";
     }
     file.close();
