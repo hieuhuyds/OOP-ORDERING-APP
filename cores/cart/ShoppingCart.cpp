@@ -7,29 +7,42 @@ ShoppingCart::ShoppingCart() {}
 // - product == nullptr hoac quantity <= 0 -> bo qua
 // - Neu Product da co trong gio -> cong don quantity, khong tao CartItem moi
 // - Quantity cuoi cung khong duoc vuot qua stock hien tai cua Product
-void ShoppingCart::addProduct(Product *product, int quantity) {
-  if (product == nullptr || quantity <= 0)
-    return;
-
-  for (auto &item : items) {
-    if (item.getProduct()->getId() == product->getId()) {
-      int maxAddable = product->getStock() - item.getQuantity();
-      if (maxAddable <= 0)
-        return; // da dat toi han stock, khong the them nua
-
-      int addQuantity = (quantity < maxAddable) ? quantity : maxAddable;
-      item.increaseQuantity(addQuantity);
-      return;
+bool ShoppingCart::addProduct(Product* product, int quantity)
+{
+    // Kiem tra san pham va so luong
+    if (product == nullptr || quantity <= 0)
+    {
+        return false;
     }
-  }
 
-  // Chua co trong gio -> tao CartItem moi, gioi han theo stock
-  int addQuantity =
-      (quantity < product->getStock()) ? quantity : product->getStock();
-  if (addQuantity <= 0)
-    return;
+    // Tim xem san pham da co trong gio hang chua
+    for (auto& item : items)
+    {
+        if (item.getProduct()->getId() == product->getId())
+        {
+            int currentQuantity = item.getQuantity();
+            int newQuantity = currentQuantity + quantity;
 
-  items.push_back(CartItem(product, addQuantity));
+            // Khong cho vuot qua stock
+            if (newQuantity > product->getStock())
+            {
+                return false;
+            }
+
+            item.increaseQuantity(quantity);
+            return true;
+        }
+    }
+
+    // San pham chua co trong gio hang
+    // Kiem tra quantity co vuot stock khong
+    if (quantity > product->getStock())
+    {
+        return false;
+    }
+
+    items.emplace_back(product, quantity);
+    return true;
 }
 
 // Xoa san pham khoi gio theo Product ID

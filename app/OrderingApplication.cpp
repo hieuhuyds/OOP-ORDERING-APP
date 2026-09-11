@@ -88,31 +88,39 @@ void OrderingApplication::searchProduct() const {
   }
 }
 
-void OrderingApplication::addProductToCart() {
-  std::string productId;
-  int quantity;
+void OrderingApplication::addProductToCart()
+{
+    std::string productId;
+    int quantity;
 
-  std::cout << "Enter Product ID: ";
-  std::cin >> productId;
+    std::cout << "Enter Product ID: ";
+    std::cin >> productId;
 
-  Product *product = productManage.findProductById(productId);
+    Product* product = productManage.findProductById(productId);
 
-  if (product == nullptr) {
-    std::cout << "Product not found!\n";
-    return;
-  }
+    if (product == nullptr)
+    {
+        std::cout << "Product not found!\n";
+        return;
+    }
 
-  std::cout << "Enter quantity: ";
-  std::cin >> quantity;
+    std::cout << "Enter quantity: ";
+    std::cin >> quantity;
 
-  if (quantity <= 0) {
-    std::cout << "Invalid quantity!\n";
-    return;
-  }
+    if (quantity <= 0)
+    {
+        std::cout << "Invalid quantity!\n";
+        return;
+    }
 
-  cart.addProduct(product, quantity);
-
-  std::cout << "Product added to cart!\n";
+    if (cart.addProduct(product, quantity))
+    {
+        std::cout << "Product added to cart!\n";
+    }
+    else
+    {
+        std::cout << "Not enough stock!\n";
+    }
 }
 
 void OrderingApplication::viewCart() const { cart.displayCart(); }
