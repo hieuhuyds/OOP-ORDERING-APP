@@ -1,4 +1,5 @@
 #include "MusicProduct.h"
+#include <iomanip>
 #include <iostream>
 
 // Constructor: dùng initializer list, gọi constructor Product và truyền
@@ -30,11 +31,13 @@ double MusicProduct::calculateFinalPrice() const {
 
 // displayInfo: hien thi thong tin chung cua Product + artist, durationMinutes
 void MusicProduct::displayInfo() const {
+    std::cout << "\n==================== PRODUCT LIST ====================\n";
     std::cout << "ID: " << id << std::endl;
     std::cout << "Name: " << name << std::endl;
-    std::cout << "Price: " << calculateFinalPrice() << std::endl;
-    std::cout << "StockQuantity: " << stockQuantity << std::endl;
+    std::cout << "Price: " << std::fixed << std::setprecision(0) << calculateFinalPrice() << std::endl;
+    std::cout << "Stock Quantity: " << stockQuantity << std::endl;
     std::cout << "Category: " << category << std::endl;
     std::cout << "Artist: " << artist << std::endl;
     std::cout << "Duration (minutes): " << durationMinutes << std::endl;
+    std::cout << "-------------------------------------------------------\n";
 }

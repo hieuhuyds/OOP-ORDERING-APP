@@ -33,19 +33,24 @@ void ShoppingCart::addProduct(Product *product, int quantity) {
 }
 
 // Xoa san pham khoi gio theo Product ID
-void ShoppingCart::removeProduct(const std::string &productId) {
-  for (auto it = items.begin(); it != items.end(); ++it) {
-    if (it->getProduct()->getId() == productId) {
-      items.erase(it);
-      return;
+bool ShoppingCart::removeProduct(const std::string& productId)
+{
+    for (auto it = items.begin(); it != items.end(); ++it)
+    {
+        if (it->getProduct()->getId() == productId)
+        {
+            items.erase(it);
+            return true;
+        }
     }
-  }
+
+    return false;
 }
 
 // Hien thi toan bo gio hang
 void ShoppingCart::displayCart() const {
   if (isEmpty()) {
-    std::cout << "Gio hang trong." << std::endl;
+    std::cout << "Cart is empty!" << std::endl;
     return;
   }
 

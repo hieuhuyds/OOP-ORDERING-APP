@@ -117,15 +117,21 @@ void OrderingApplication::addProductToCart() {
 
 void OrderingApplication::viewCart() const { cart.displayCart(); }
 
-void OrderingApplication::removeProductFromCart() {
-  std::string productId;
+void OrderingApplication::removeProductFromCart()
+{
+    std::string productId;
 
-  std::cout << "Enter Product ID to remove: ";
-  std::cin >> productId;
+    std::cout << "Enter Product ID to remove: ";
+    std::cin >> productId;
 
-  cart.removeProduct(productId);
-
-  std::cout << "Product removed from cart!\n";
+    if (cart.removeProduct(productId))
+    {
+        std::cout << "Product removed from cart!\n";
+    }
+    else
+    {
+        std::cout << "Product not found in cart!\n";
+    }
 }
 
 void OrderingApplication::checkout() {

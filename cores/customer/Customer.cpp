@@ -40,23 +40,23 @@ void Customer::setAddress(std::string newAddress) {
 
 // Nhập thông tin
 void Customer::input() {
-    std::cout << "Nhap Name: ";
+    std::cout << "Full Name: ";
     getline(std::cin >> std::ws, name);
 
-    std::cout << "Nhap Phone: ";
+    std::cout << "Phone Number: ";
     getline(std::cin, phone);
 
-    std::cout << "Nhap Email: ";
+    std::cout << "Email: ";
     getline(std::cin, email);
 
-    std::cout << "Nhap Address: ";
+    std::cout << "Address: ";
     getline(std::cin, address);
 }
 
 // Hiển thị thông tin
 void Customer::display() const {
-    std::cout << "Name: " << name << std::endl;
-    std::cout << "Phone: " << phone << std::endl;
+    std::cout << "Full Name: " << name << std::endl;
+    std::cout << "Phone Numer: " << phone << std::endl;
     std::cout << "Email: " << email << std::endl;
     std::cout << "Address: " << address << std::endl;
 }
