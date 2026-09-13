@@ -104,6 +104,7 @@
     <None Include="HUONG DAN SU DUNG GIT.md" />
     <None Include="OOP-ORDERING-APP.slnx" />
     <None Include=".gitignore" />
+    <None Include="Project Guidance.md" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="data\products.txt" />
