@@ -24,49 +24,49 @@
 
 ``` text
 OOP-ORDERING-APP/
-├── main.cpp
+├── main.cpp                                      # Điểm bắt đầu chương trình
 ├── app/
-│   ├── OrderingApplication.h
-│   └── OrderingApplication.cpp
+│   ├── OrderingApplication.h                     # Khai báo giao diện và các chức năng chính của ứng dụng
+│   └── OrderingApplication.cpp                   # Điều khiển menu và luồng hoạt động của chương trình
 │
 ├── cores/
-│   ├── products/
-│   │   ├── Product.h
-│   │   ├── Product.cpp
-│   │   ├── BookProduct.h
+│   ├── products/                                 # Các class sản phẩm và xử lý đặc điểm từng loại
+│   │   ├── Product.h                             # Abstract class, định nghĩa thông tin và interface chung
+│   │   ├── Product.cpp                           # Cài đặt các chức năng chung của Product
+│   │   ├── BookProduct.h                         # Class sản phẩm sách
 │   │   ├── BookProduct.cpp
-│   │   ├── GameProduct.h
+│   │   ├── GameProduct.h                         # Class sản phẩm game
 │   │   ├── GameProduct.cpp
-│   │   ├── MusicProduct.h
-│   │   └── MusicProduct.cpp
+│   │   ├── MusicProduct.h                        # Class sản phẩm âm nhạc
+│   │   ├── MusicProduct.cpp
 │   │
-│   ├── customer/
+│   ├── customer/                                 # Quản lý thông tin khách hàng
 │   │   ├── Customer.h
 │   │   └── Customer.cpp
 │   │
-│   ├── cart/
-│   │   ├── CartItem.h
+│   ├── cart/                                     # Quản lý giỏ hàng
+│   │   ├── CartItem.h                            # Đại diện cho một sản phẩm trong giỏ hàng
 │   │   ├── CartItem.cpp
-│   │   ├── ShoppingCart.h
+│   │   ├── ShoppingCart.h                        # Quản lý danh sách sản phẩm trong giỏ
 │   │   └── ShoppingCart.cpp
 │   │
-│   └── order/
-│       ├── OrderItem.h
+│   └── order/                                    # Quản lý thông tin đơn hàng
+│       ├── OrderItem.h                           # Đại diện cho một sản phẩm trong đơn hàng
 │       ├── OrderItem.cpp
-│       ├── Order.h
+│       ├── Order.h                               # Lưu thông tin và tính toán của đơn hàng
 │       └── Order.cpp
 │
-├── manage/
-│   ├── ProductManage.h
+├── manage/                                       # Các class quản lý và xử lý nghiệp vụ
+│   ├── ProductManage.h                           # Quản lý danh sách Product
 │   ├── ProductManage.cpp
-│   ├── OrderManage.h
+│   ├── OrderManage.h                             # Xử lý checkout và quản lý Order History
 │   ├── OrderManage.cpp
-│   ├── FileManage.h
-│   └── FileManage.cpp
+│   ├── FileManage.h                              # Khai báo các thao tác đọc/ghi file
+│   └── FileManage.cpp                            # Cài đặt các thao tác đọc/ghi file
 │
-└── data/
-    ├── products.txt
-    └── OrderHistory.txt
+└── data/                                         # Dữ liệu của chương trình
+    ├── products.txt                              # Lưu thông tin sản phẩm và tồn kho
+    └── OrderHistory.txt                          # Lưu lịch sử đơn hàng
 ```
 
 ------------------------------------------------------------------------

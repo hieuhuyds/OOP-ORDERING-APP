@@ -54,6 +54,7 @@
     <None Include="HUONG DAN SU DUNG GIT.md" />
     <None Include="OOP-ORDERING-APP.slnx" />
     <None Include="Project Guidance.md" />
+    <None Include="README.md" />
     <None Include="TASK CAN LAM.md" />
   </ItemGroup>
   <ItemGroup>

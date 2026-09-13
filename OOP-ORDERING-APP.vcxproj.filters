@@ -105,6 +105,7 @@
     <None Include="OOP-ORDERING-APP.slnx" />
     <None Include=".gitignore" />
     <None Include="Project Guidance.md" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="data\products.txt" />
